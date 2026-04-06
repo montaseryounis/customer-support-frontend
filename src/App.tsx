@@ -1,123 +1,90 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+import { useState, useRef, useEffect } from 'react'
+import './App.css'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+
+interface Message {
+  role: 'user' | 'assistant'
+  content: string
 }
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #f0f2f5;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+export default function App() {
+  const [messages, setMessages] = useState<Message[]>([
+    { role: 'assistant', content: '👋 مرحباً! كيف يمكنني مساعدتك اليوم؟' }
+  ])
+  const [input, setInput] = useState('')
+  const [loading, setLoading] = useState(false)
+  const bottomRef = useRef<HTMLDivElement>(null)
 
-.chat-container {
-  width: 100%;
-  max-width: 700px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: white;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages])
 
-.chat-header {
-  background: #2563eb;
-  color: white;
-  padding: 16px 20px;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-}
+  const sendMessage = async () => {
+    if (!input.trim()) return
+    const userMsg: Message = { role: 'user', content: input }
+    setMessages(prev => [...prev, userMsg])
+    setInput('')
+    setLoading(true)
 
-.chat-messages {
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.message {
-  max-width: 80%;
-  padding: 12px 16px;
-  border-radius: 18px;
-  font-size: 15px;
-  line-height: 1.5;
-  word-break: break-word;
-}
-
-.message.user {
-  background: #2563eb;
-  color: white;
-  align-self: flex-end;
-  border-bottom-right-radius: 4px;
-}
-
-.message.assistant {
-  background: #f1f5f9;
-  color: #1e293b;
-  align-self: flex-start;
-  border-bottom-left-radius: 4px;
-}
-
-.chat-input {
-  display: flex;
-  padding: 12px;
-  gap: 8px;
-  border-top: 1px solid #e2e8f0;
-  background: white;
-}
-
-.chat-input input {
-  flex: 1;
-  padding: 12px 16px;
-  border: 1px solid #cbd5e1;
-  border-radius: 24px;
-  font-size: 15px;
-  outline: none;
-}
-
-.chat-input input:focus {
-  border-color: #2563eb;
-}
-
-.chat-input button {
-  background: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 24px;
-  padding: 12px 20px;
-  font-size: 15px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.chat-input button:disabled {
-  background: #94a3b8;
-}
-
-@media (max-width: 480px) {
-  .chat-header {
-    font-size: 16px;
-    padding: 14px;
+    try {
+      const res = await fetch(`${API_URL}/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: input }),
+      })
+      const data = await res.json()
+      setMessages(prev => [...prev, { role: 'assistant', content: data.response }])
+    } catch {
+      setMessages(prev => [...prev, { role: 'assistant', content: '❌ خطأ في الاتصال' }])
+    } finally {
+      setLoading(false)
+    }
   }
 
-  .message {
-    font-size: 14px;
-    max-width: 90%;
-  }
+  return (
+    <div className="chat-wrapper">
+      <div className="chat-container">
+        <div className="chat-header">
+          <div className="header-avatar">🤖</div>
+          <div className="header-info">
+            <div className="header-name">Customer Support</div>
+            <div className="header-status">🟢 متصل الآن</div>
+          </div>
+        </div>
 
-  .chat-input input {
-    font-size: 14px;
-    padding: 10px 14px;
-  }
+        <div className="chat-messages">
+          {messages.map((msg, i) => (
+            <div key={i} className={`message-row ${msg.role}`}>
+              {msg.role === 'assistant' && <div className="avatar">🤖</div>}
+              <div className={`message ${msg.role}`}>{msg.content}</div>
+              {msg.role === 'user' && <div className="avatar">👤</div>}
+            </div>
+          ))}
+          {loading && (
+            <div className="message-row assistant">
+              <div className="avatar">🤖</div>
+              <div className="message assistant typing">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          )}
+          <div ref={bottomRef} />
+        </div>
 
-  .chat-input button {
-    padding: 10px 16px;
-    font-size: 14px;
-  }
+        <div className="chat-input">
+          <input
+            value={input}
+            onChange={e => setInput(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && sendMessage()}
+            placeholder="اكتب رسالتك..."
+            disabled={loading}
+          />
+          <button onClick={sendMessage} disabled={loading}>
+            ➤
+          </button>
+        </div>
+      </div>
+    </div>
+  )
 }
