@@ -26,13 +26,18 @@ export default function App() {
     setLoading(true)
 
     try {
-      const res = await fetch(`${API_URL}/chat`, {
+      const res = await fetch(`${API_URL}/support/chatkit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: input }),
+        body: JSON.stringify({
+          messages: [...messages, userMsg]
+        }),
       })
       const data = await res.json()
-      setMessages(prev => [...prev, { role: 'assistant', content: data.response }])
+      const reply = data?.output?.[data.output.length - 1]?.content?.[0]?.text
+        || data?.response
+        || 'لم أتمكن من الحصول على رد'
+      setMessages(prev => [...prev, { role: 'assistant', content: reply }])
     } catch {
       setMessages(prev => [...prev, { role: 'assistant', content: '❌ خطأ في الاتصال بالـ Backend' }])
     } finally {
