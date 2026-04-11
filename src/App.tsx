@@ -1,5 +1,4 @@
 import { ChatKitProvider, ChatKitChatContainer } from "@openai/chatkit-react";
-import "@openai/chatkit-react/styles.css";
 
 export default function App() {
   return (
