@@ -101,11 +101,65 @@ export default function App() {
   }, []);
 
   return (
-    <div style={{ width: "100vw", height: "100vh" }}>
-      <openai-chatkit
-        id="my-chatkit"
-        style={{ display: "block", width: "100%", height: "100%" }}
-      ></openai-chatkit>
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "linear-gradient(180deg, #eff6ff 0%, #f8fafc 100%)",
+        fontFamily: "Inter, Arial, sans-serif",
+        padding: "24px",
+        boxSizing: "border-box",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+        }}
+      >
+        <div
+          style={{
+            marginBottom: "18px",
+          }}
+        >
+          <div
+            style={{
+              fontSize: "28px",
+              fontWeight: 700,
+              color: "#0f172a",
+              marginBottom: "8px",
+            }}
+          >
+            عزّام
+          </div>
+
+          <div
+            style={{
+              fontSize: "15px",
+              color: "#475569",
+              lineHeight: 1.7,
+            }}
+          >
+            مساعد خدمة العملاء الذكي للرد على الاستفسارات ومتابعة المحادثات بشكل سريع وواضح.
+          </div>
+        </div>
+
+        <div
+          style={{
+            background: "#ffffff",
+            border: "1px solid #e2e8f0",
+            borderRadius: "20px",
+            boxShadow: "0 10px 30px rgba(15, 23, 42, 0.08)",
+            overflow: "hidden",
+            height: "calc(100vh - 150px)",
+            minHeight: "700px",
+          }}
+        >
+          <openai-chatkit
+            id="my-chatkit"
+            style={{ display: "block", width: "100%", height: "100%" }}
+          ></openai-chatkit>
+        </div>
+      </div>
     </div>
   );
 }
