@@ -104,54 +104,109 @@ export default function App() {
     <div
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(180deg, #eff6ff 0%, #f8fafc 100%)",
+        background:
+          "radial-gradient(circle at top right, #dbeafe 0%, #eff6ff 24%, #f8fafc 58%, #ffffff 100%)",
         fontFamily: "Inter, Arial, sans-serif",
-        padding: "24px",
+        padding: "32px 24px",
         boxSizing: "border-box",
       }}
     >
       <div
         style={{
-          maxWidth: "1200px",
+          maxWidth: "1280px",
           margin: "0 auto",
         }}
       >
         <div
           style={{
-            marginBottom: "18px",
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "space-between",
+            gap: "16px",
+            marginBottom: "22px",
+            flexWrap: "wrap",
           }}
         >
-          <div
-            style={{
-              fontSize: "28px",
-              fontWeight: 700,
-              color: "#0f172a",
-              marginBottom: "8px",
-            }}
-          >
-            عزّام
+          <div>
+            <div
+              style={{
+                fontSize: "13px",
+                color: "#64748b",
+                letterSpacing: "0.12em",
+                marginBottom: "10px",
+                textTransform: "uppercase",
+              }}
+            >
+              ERTQA | AI Assistant
+            </div>
+
+            <div
+              style={{
+                fontSize: "34px",
+                fontWeight: 800,
+                color: "#0f172a",
+                marginBottom: "10px",
+              }}
+            >
+              عزّام
+            </div>
+
+            <div
+              style={{
+                fontSize: "16px",
+                lineHeight: 1.9,
+                color: "#334155",
+                maxWidth: "780px",
+              }}
+            >
+              مساعد ارتقاء الذكي لخدمة العملاء، يساعدك في الاستفسارات، التخصيص، الطلبات، والحلول
+              المرتبطة بالهدايا المؤسسية والتصنيع الإبداعي بأسلوب واضح وسريع.
+            </div>
           </div>
 
           <div
             style={{
-              fontSize: "15px",
-              color: "#475569",
-              lineHeight: 1.7,
+              background: "rgba(255,255,255,0.75)",
+              border: "1px solid rgba(148,163,184,0.25)",
+              backdropFilter: "blur(10px)",
+              WebkitBackdropFilter: "blur(10px)",
+              borderRadius: "18px",
+              padding: "14px 18px",
+              minWidth: "220px",
+              boxShadow: "0 8px 24px rgba(15, 23, 42, 0.06)",
             }}
           >
-            مساعد خدمة العملاء الذكي للرد على الاستفسارات ومتابعة المحادثات بشكل سريع وواضح.
+            <div
+              style={{
+                fontSize: "12px",
+                color: "#64748b",
+                marginBottom: "6px",
+              }}
+            >
+              الحالة
+            </div>
+            <div
+              style={{
+                fontSize: "15px",
+                fontWeight: 700,
+                color: "#0f172a",
+              }}
+            >
+              متصل وجاهز للمحادثة
+            </div>
           </div>
         </div>
 
         <div
           style={{
-            background: "#ffffff",
-            border: "1px solid #e2e8f0",
-            borderRadius: "20px",
-            boxShadow: "0 10px 30px rgba(15, 23, 42, 0.08)",
+            background: "rgba(255,255,255,0.88)",
+            border: "1px solid rgba(226,232,240,0.95)",
+            borderRadius: "26px",
             overflow: "hidden",
-            height: "calc(100vh - 150px)",
-            minHeight: "700px",
+            boxShadow:
+              "0 18px 50px rgba(15, 23, 42, 0.10), 0 2px 10px rgba(15, 23, 42, 0.04)",
+            height: "calc(100vh - 170px)",
+            minHeight: "720px",
           }}
         >
           <openai-chatkit
