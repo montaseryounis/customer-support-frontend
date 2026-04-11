@@ -3,7 +3,6 @@ import { ChatKit, useChatKit } from "@openai/chatkit-react";
 export default function App() {
   const { control } = useChatKit({
     api: {
-      domainKey: "domain_pk_69da10da8b70819480e24f05f12c781c0e433cf06ee6ea98",
       async getClientSecret(existing) {
         if (existing) {
           return existing;
@@ -31,8 +30,15 @@ export default function App() {
   });
 
   return (
-    <div style={{ width: "100vw", height: "100vh" }}>
-      <ChatKit control={control} className="h-full w-full" />
+    <div
+      style={{
+        width: "100vw",
+        height: "100vh",
+        minHeight: "100vh",
+        display: "flex",
+      }}
+    >
+      <ChatKit control={control} style={{ flex: 1 }} />
     </div>
   );
 }
