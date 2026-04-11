@@ -125,85 +125,44 @@ export default function App() {
       >
         <div
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            gap: "24px",
-            flexWrap: "wrap",
             marginBottom: "24px",
           }}
         >
-          <div>
-            <div
-              style={{
-                fontSize: "12px",
-                letterSpacing: "0.16em",
-                textTransform: "uppercase",
-                color: "#bda57a",
-                marginBottom: "10px",
-                fontWeight: 700,
-              }}
-            >
-              ERTQA | AI CONCIERGE
-            </div>
-
-            <div
-              style={{
-                fontSize: "44px",
-                lineHeight: 1.1,
-                fontWeight: 300,
-                marginBottom: "14px",
-                color: "#e9dcc0",
-                textShadow: "0 0 18px rgba(233, 220, 192, 0.10)",
-              }}
-            >
-              عزّام
-            </div>
-
-            <div
-              style={{
-                fontSize: "17px",
-                lineHeight: 1.95,
-                color: "#d8ccb4",
-                maxWidth: "860px",
-              }}
-            >
-              مساعد ارتقاء الذكي لتجربة خدمة عملاء راقية، يساعدك في الاستفسارات والطلبات
-              والتخصيص، بروح تعكس هوية ارتقاء حيث تتحول الفكرة إلى أثر ملموس.
-            </div>
+          <div
+            style={{
+              fontSize: "12px",
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              color: "#bda57a",
+              marginBottom: "10px",
+              fontWeight: 700,
+            }}
+          >
+            ERTQA | AI CONCIERGE
           </div>
 
           <div
             style={{
-              minWidth: "240px",
-              padding: "16px 18px",
-              borderRadius: "20px",
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(201, 169, 97, 0.35)",
-              boxShadow:
-                "0 10px 25px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.05)",
-              backdropFilter: "blur(10px)",
-              WebkitBackdropFilter: "blur(10px)",
+              fontSize: "44px",
+              lineHeight: 1.1,
+              fontWeight: 300,
+              marginBottom: "14px",
+              color: "#e9dcc0",
+              textShadow: "0 0 18px rgba(233, 220, 192, 0.10)",
             }}
           >
-            <div
-              style={{
-                fontSize: "12px",
-                color: "#b89d6f",
-                marginBottom: "6px",
-              }}
-            >
-              الحالة
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                fontWeight: 700,
-                color: "#f0e5cd",
-              }}
-            >
-              متصل وجاهز لخدمتك
-            </div>
+            أرتقـــاء
+          </div>
+
+          <div
+            style={{
+              fontSize: "17px",
+              lineHeight: 1.95,
+              color: "#d8ccb4",
+              maxWidth: "860px",
+            }}
+          >
+            مساعد ارتقاء الذكي لخدمة المبيعات ، يساعدك في تسعير المنتجات 
           </div>
         </div>
 
@@ -248,32 +207,6 @@ export default function App() {
                 }}
               >
                 تجربة محادثة فاخرة مستوحاة من هوية ارتقاء
-              </div>
-
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                }}
-              >
-                <div
-                  style={{
-                    width: "8px",
-                    height: "8px",
-                    borderRadius: "999px",
-                    background: "#c9a961",
-                    boxShadow: "0 0 12px rgba(201, 169, 97, 0.6)",
-                  }}
-                />
-                <div
-                  style={{
-                    fontSize: "12px",
-                    color: "#bfa97d",
-                  }}
-                >
-                  Online
-                </div>
               </div>
             </div>
 
