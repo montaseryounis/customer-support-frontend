@@ -50,20 +50,6 @@ export default function App() {
       );
 
       chatkitEl.setOptions({
-        theme: {
-          colorScheme: "light",
-          color: {
-            accent: {
-              primary: "#2563EB",
-              level: 2,
-            },
-          },
-          radius: "round",
-          density: "comfortable",
-          typography: {
-            fontFamily: "'Inter', Arial, sans-serif",
-          },
-        },
         api: {
           async getClientSecret(currentClientSecret: string | null) {
             if (currentClientSecret) {
@@ -115,13 +101,7 @@ export default function App() {
   }, []);
 
   return (
-    <div
-      style={{
-        width: "100vw",
-        height: "100vh",
-        background: "#F8FAFC",
-      }}
-    >
+    <div style={{ width: "100vw", height: "100vh" }}>
       <openai-chatkit
         id="my-chatkit"
         style={{ display: "block", width: "100%", height: "100%" }}
