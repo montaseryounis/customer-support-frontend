@@ -1,100 +1,4 @@
-import { useEffect, useRef } from "react";
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      "openai-chatkit": React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      >;
-    }
-  }
-}
-
-function getOrCreateUserId() {
-  const storageKey = "azzam_user_id";
-  const existing = localStorage.getItem(storageKey);
-
-  if (existing) return existing;
-
-  const newId =
-    typeof crypto !== "undefined" && "randomUUID" in crypto
-      ? crypto.randomUUID()
-      : `user_${Date.now()}_${Math.random().toString(36).slice(2)}`;
-
-  localStorage.setItem(storageKey, newId);
-  return newId;
-}
-
 export default function App() {
-  const initializedRef = useRef(false);
-
-  useEffect(() => {
-    if (initializedRef.current) return;
-    initializedRef.current = true;
-
-    const setupChatKit = async () => {
-      await customElements.whenDefined("openai-chatkit");
-
-      const chatkitEl = document.getElementById("my-chatkit") as any;
-      if (!chatkitEl) return;
-
-      chatkitEl.addEventListener(
-        "chatkit.ready",
-        () => {
-          console.log("ChatKit is ready");
-        },
-        { once: true }
-      );
-
-      chatkitEl.setOptions({
-        api: {
-          async getClientSecret(currentClientSecret: string | null) {
-            if (currentClientSecret) return currentClientSecret;
-
-            const userId = getOrCreateUserId();
-
-            const response = await fetch(
-              "https://customer-support-backend-production-62a3.up.railway.app/chatkit/session",
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  user_id: userId,
-                }),
-              }
-            );
-
-            if (!response.ok) {
-              const text = await response.text();
-              throw new Error(`Session error: ${response.status} ${text}`);
-            }
-
-            const data = await response.json();
-            return data.client_secret;
-          },
-        },
-      });
-    };
-
-    const existingScript = document.querySelector(
-      'script[src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"]'
-    );
-
-    if (existingScript) {
-      setupChatKit();
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.src = "https://cdn.platform.openai.com/deployments/chatkit/chatkit.js";
-    script.async = true;
-    script.onload = setupChatKit;
-    document.body.appendChild(script);
-  }, []);
-
   const isMobile =
     typeof window !== "undefined" ? window.innerWidth <= 768 : false;
 
@@ -162,8 +66,8 @@ export default function App() {
               marginLeft: "auto",
             }}
           >
-            مساعد ارتقاء الذكي لخدمة المبيعات، يساعدك في تسعير المنتجات والاستفسارات
-            والتخصيص، بروح تعكس هوية ارتقاء حيث تتحول الفكرة إلى أثر ملموس.
+            هذه نسخة اختبار بدون ChatKit للتأكد هل المشكلة من الشات نفسه أو من إعدادات
+            النشر على الدومين الإنتاجي.
           </div>
         </div>
 
@@ -188,37 +92,60 @@ export default function App() {
                 "linear-gradient(180deg, rgba(8,8,8,0.96) 0%, rgba(10,12,11,0.96) 100%)",
               height: "calc(100vh - 180px)",
               minHeight: isMobile ? "640px" : "760px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: isMobile ? "24px" : "40px",
+              boxSizing: "border-box",
             }}
           >
             <div
               style={{
-                height: "68px",
-                borderBottom: "1px solid rgba(201, 169, 97, 0.18)",
-                background:
-                  "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                padding: isMobile ? "0 14px" : "0 22px",
-                boxSizing: "border-box",
+                width: "100%",
+                maxWidth: "760px",
+                borderRadius: "24px",
+                background: "#f7f5f1",
+                padding: isMobile ? "28px 20px" : "40px 32px",
+                boxShadow: "0 15px 40px rgba(0,0,0,0.18)",
+                textAlign: "center",
               }}
             >
               <div
                 style={{
-                  fontSize: isMobile ? "12px" : "14px",
-                  color: "#ddcfb2",
+                  fontSize: isMobile ? "24px" : "30px",
+                  color: "#2b2b2b",
+                  fontWeight: 700,
+                  marginBottom: "14px",
+                }}
+              >
+                اختبار الواجهة
+              </div>
+
+              <div
+                style={{
+                  fontSize: isMobile ? "15px" : "17px",
+                  lineHeight: 1.9,
+                  color: "#4d4d4d",
+                  marginBottom: "18px",
+                }}
+              >
+                إذا ظهرت هذه البطاقة على رابط الإنتاج، فهذا يعني أن التطبيق يعمل وأن
+                المشكلة على الأغلب من ChatKit أو من إعدادات الدومين المرتبطة به.
+              </div>
+
+              <div
+                style={{
+                  display: "inline-block",
+                  padding: "10px 18px",
+                  borderRadius: "999px",
+                  background: "#111111",
+                  color: "#f3e4bf",
+                  fontSize: "14px",
                   fontWeight: 600,
                 }}
               >
-                تجربة محادثة فاخرة مستوحاة من هوية ارتقاء
+                Production Test Mode
               </div>
-            </div>
-
-            <div style={{ width: "100%", height: "calc(100% - 68px)" }}>
-              <openai-chatkit
-                id="my-chatkit"
-                style={{ display: "block", width: "100%", height: "100%" }}
-              ></openai-chatkit>
             </div>
           </div>
         </div>
