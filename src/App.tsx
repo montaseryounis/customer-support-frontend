@@ -11,6 +11,23 @@ declare global {
   }
 }
 
+function getOrCreateUserId() {
+  const storageKey = "azzam_user_id";
+  const existing = localStorage.getItem(storageKey);
+
+  if (existing) {
+    return existing;
+  }
+
+  const newId =
+    typeof crypto !== "undefined" && "randomUUID" in crypto
+      ? crypto.randomUUID()
+      : `user_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+
+  localStorage.setItem(storageKey, newId);
+  return newId;
+}
+
 export default function App() {
   const initializedRef = useRef(false);
 
@@ -39,6 +56,8 @@ export default function App() {
               return currentClientSecret;
             }
 
+            const userId = getOrCreateUserId();
+
             const response = await fetch(
               "https://customer-support-backend-production-62a3.up.railway.app/chatkit/session",
               {
@@ -46,6 +65,9 @@ export default function App() {
                 headers: {
                   "Content-Type": "application/json",
                 },
+                body: JSON.stringify({
+                  user_id: userId,
+                }),
               }
             );
 
