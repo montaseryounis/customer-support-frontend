@@ -18,26 +18,19 @@ export default function App() {
     if (initializedRef.current) return;
     initializedRef.current = true;
 
-    const script = document.createElement("script");
-    script.src = "https://cdn.platform.openai.com/deployments/chatkit/chatkit.js";
-    script.async = true;
+    const existingScript = document.querySelector(
+      'script[src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"]'
+    );
 
-    script.onload = async () => {
+    const setupChatKit = async () => {
       await customElements.whenDefined("openai-chatkit");
 
       const chatkitEl = document.getElementById("my-chatkit") as any;
       if (!chatkitEl) return;
 
-      chatkitEl.addEventListener(
-        "chatkit.ready",
-        () => {
-          console.log("ChatKit is ready");
-        },
-        { once: true }
-      );
-
       chatkitEl.setOptions({
         api: {
+          domainKey: "domain_pk_69da17b306088194b38f01a92dc3288f0a6bf281dcae82e7",
           async getClientSecret(currentClientSecret: string | null) {
             if (currentClientSecret) {
               return currentClientSecret;
@@ -64,6 +57,16 @@ export default function App() {
         },
       });
     };
+
+    if (existingScript) {
+      setupChatKit();
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://cdn.platform.openai.com/deployments/chatkit/chatkit.js";
+    script.async = true;
+    script.onload = setupChatKit;
 
     document.body.appendChild(script);
   }, []);
