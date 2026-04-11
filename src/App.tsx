@@ -104,140 +104,135 @@ export default function App() {
     <div
       style={{
         minHeight: "100vh",
-        background:
-          "linear-gradient(180deg, #f8f5ef 0%, #f4efe6 42%, #f8fafc 100%)",
-        fontFamily:
-          "'IBM Plex Sans Arabic', 'Tahoma', 'Arial', sans-serif",
-        padding: "32px 24px",
+        background: `
+          radial-gradient(circle at 15% 10%, rgba(150, 120, 30, 0.30) 0%, rgba(150, 120, 30, 0.00) 26%),
+          radial-gradient(circle at 85% 88%, rgba(152, 119, 36, 0.22) 0%, rgba(152, 119, 36, 0.00) 28%),
+          radial-gradient(circle at 18% 45%, rgba(4, 60, 48, 0.40) 0%, rgba(4, 60, 48, 0.00) 30%),
+          radial-gradient(circle at 72% 62%, rgba(32, 52, 28, 0.30) 0%, rgba(32, 52, 28, 0.00) 26%),
+          linear-gradient(180deg, #040404 0%, #050606 36%, #07110d 68%, #050505 100%)
+        `,
+        fontFamily: "'IBM Plex Sans Arabic', 'Tahoma', 'Arial', sans-serif",
+        padding: "28px 24px",
         boxSizing: "border-box",
         direction: "rtl",
       }}
     >
       <div
         style={{
-          maxWidth: "1320px",
+          maxWidth: "1380px",
           margin: "0 auto",
         }}
       >
         <div
           style={{
-            marginBottom: "22px",
-            padding: "22px 26px",
-            borderRadius: "24px",
-            background: "rgba(255,255,255,0.68)",
-            border: "1px solid rgba(201, 169, 97, 0.35)",
-            boxShadow:
-              "0 12px 35px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255,255,255,0.65)",
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+            gap: "24px",
+            flexWrap: "wrap",
+            marginBottom: "24px",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-end",
-              gap: "16px",
-              flexWrap: "wrap",
-            }}
-          >
-            <div>
-              <div
-                style={{
-                  fontSize: "12px",
-                  letterSpacing: "0.18em",
-                  color: "#9a7b34",
-                  marginBottom: "10px",
-                  textTransform: "uppercase",
-                  fontWeight: 700,
-                }}
-              >
-                ERTQA | CUSTOMER EXPERIENCE
-              </div>
-
-              <div
-                style={{
-                  fontSize: "38px",
-                  fontWeight: 800,
-                  color: "#1f2937",
-                  marginBottom: "10px",
-                }}
-              >
-                أرتقــاء
-              </div>
-
-              <div
-                style={{
-                  fontSize: "17px",
-                  lineHeight: 1.9,
-                  color: "#4b5563",
-                  maxWidth: "840px",
-                }}
-              >
-                مساعد ارتقاء الذكي لخدمة فريق المبيعات ، صُمّم ليقدّم تجربة تواصل راقية تعكس
-                هوية ارتقاء التي تجمع بين الحرفة، الإتقان، والتصنيع المخصص.
-              </div>
+          <div>
+            <div
+              style={{
+                fontSize: "12px",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "#bda57a",
+                marginBottom: "10px",
+                fontWeight: 700,
+              }}
+            >
+              ERTQA | AI CONCIERGE
             </div>
 
             <div
               style={{
-                minWidth: "240px",
-                padding: "14px 18px",
-                borderRadius: "18px",
-                background:
-                  "linear-gradient(135deg, rgba(201,169,97,0.14) 0%, rgba(255,255,255,0.92) 100%)",
-                border: "1px solid rgba(201, 169, 97, 0.45)",
-                boxShadow: "0 8px 20px rgba(201, 169, 97, 0.10)",
+                fontSize: "44px",
+                lineHeight: 1.1,
+                fontWeight: 300,
+                marginBottom: "14px",
+                color: "#e9dcc0",
+                textShadow: "0 0 18px rgba(233, 220, 192, 0.10)",
               }}
             >
-              <div
-                style={{
-                  fontSize: "12px",
-                  color: "#8b6b2e",
-                  marginBottom: "6px",
-                }}
-              >
-                الحالة
-              </div>
-              <div
-                style={{
-                  fontSize: "15px",
-                  fontWeight: 700,
-                  color: "#1f2937",
-                }}
-              >
-                متصل وجاهز لخدمتك
-              </div>
+              عزّام
+            </div>
+
+            <div
+              style={{
+                fontSize: "17px",
+                lineHeight: 1.95,
+                color: "#d8ccb4",
+                maxWidth: "860px",
+              }}
+            >
+              مساعد ارتقاء الذكي لتجربة خدمة عملاء راقية، يساعدك في الاستفسارات والطلبات
+              والتخصيص، بروح تعكس هوية ارتقاء حيث تتحول الفكرة إلى أثر ملموس.
+            </div>
+          </div>
+
+          <div
+            style={{
+              minWidth: "240px",
+              padding: "16px 18px",
+              borderRadius: "20px",
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(201, 169, 97, 0.35)",
+              boxShadow:
+                "0 10px 25px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.05)",
+              backdropFilter: "blur(10px)",
+              WebkitBackdropFilter: "blur(10px)",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "12px",
+                color: "#b89d6f",
+                marginBottom: "6px",
+              }}
+            >
+              الحالة
+            </div>
+            <div
+              style={{
+                fontSize: "15px",
+                fontWeight: 700,
+                color: "#f0e5cd",
+              }}
+            >
+              متصل وجاهز لخدمتك
             </div>
           </div>
         </div>
 
         <div
           style={{
-            position: "relative",
             borderRadius: "30px",
             padding: "1px",
             background:
-              "linear-gradient(135deg, rgba(201,169,97,0.95) 0%, rgba(233,216,166,0.85) 35%, rgba(255,255,255,0.55) 100%)",
+              "linear-gradient(135deg, rgba(201,169,97,0.95) 0%, rgba(128,102,48,0.85) 38%, rgba(255,240,205,0.45) 100%)",
             boxShadow:
-              "0 24px 60px rgba(15, 23, 42, 0.10), 0 8px 22px rgba(201, 169, 97, 0.12)",
+              "0 30px 70px rgba(0,0,0,0.35), 0 0 35px rgba(201,169,97,0.10)",
           }}
         >
           <div
             style={{
-              background: "rgba(255,255,255,0.96)",
               borderRadius: "29px",
               overflow: "hidden",
-              height: "calc(100vh - 190px)",
+              background:
+                "linear-gradient(180deg, rgba(8,8,8,0.96) 0%, rgba(10,12,11,0.96) 100%)",
+              height: "calc(100vh - 180px)",
               minHeight: "760px",
             }}
           >
             <div
               style={{
-                height: "64px",
-                borderBottom: "1px solid rgba(201, 169, 97, 0.20)",
+                height: "68px",
+                borderBottom: "1px solid rgba(201, 169, 97, 0.18)",
                 background:
-                  "linear-gradient(180deg, rgba(250,247,241,0.95) 0%, rgba(255,255,255,0.9) 100%)",
+                  "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
@@ -248,25 +243,41 @@ export default function App() {
               <div
                 style={{
                   fontSize: "14px",
-                  fontWeight: 700,
-                  color: "#374151",
+                  color: "#ddcfb2",
+                  fontWeight: 600,
                 }}
               >
-                تجربة محادثة راقية تعكس هوية ارتقاء
+                تجربة محادثة فاخرة مستوحاة من هوية ارتقاء
               </div>
 
               <div
                 style={{
-                  width: "10px",
-                  height: "10px",
-                  borderRadius: "999px",
-                  background: "#c9a961",
-                  boxShadow: "0 0 12px rgba(201, 169, 97, 0.55)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
                 }}
-              />
+              >
+                <div
+                  style={{
+                    width: "8px",
+                    height: "8px",
+                    borderRadius: "999px",
+                    background: "#c9a961",
+                    boxShadow: "0 0 12px rgba(201, 169, 97, 0.6)",
+                  }}
+                />
+                <div
+                  style={{
+                    fontSize: "12px",
+                    color: "#bfa97d",
+                  }}
+                >
+                  Online
+                </div>
+              </div>
             </div>
 
-            <div style={{ width: "100%", height: "calc(100% - 64px)" }}>
+            <div style={{ width: "100%", height: "calc(100% - 68px)" }}>
               <openai-chatkit
                 id="my-chatkit"
                 style={{ display: "block", width: "100%", height: "100%" }}
