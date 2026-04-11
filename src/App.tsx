@@ -24,6 +24,14 @@ export default function App() {
       const chatkitEl = document.getElementById("my-chatkit") as any;
       if (!chatkitEl) return;
 
+      chatkitEl.addEventListener(
+        "chatkit.ready",
+        () => {
+          console.log("ChatKit is ready");
+        },
+        { once: true }
+      );
+
       chatkitEl.setOptions({
         api: {
           async getClientSecret(currentClientSecret: string | null) {
