@@ -15,9 +15,7 @@ function getOrCreateUserId() {
   const storageKey = "azzam_user_id";
   const existing = localStorage.getItem(storageKey);
 
-  if (existing) {
-    return existing;
-  }
+  if (existing) return existing;
 
   const newId =
     typeof crypto !== "undefined" && "randomUUID" in crypto
@@ -52,9 +50,7 @@ export default function App() {
       chatkitEl.setOptions({
         api: {
           async getClientSecret(currentClientSecret: string | null) {
-            if (currentClientSecret) {
-              return currentClientSecret;
-            }
+            if (currentClientSecret) return currentClientSecret;
 
             const userId = getOrCreateUserId();
 
@@ -96,9 +92,11 @@ export default function App() {
     script.src = "https://cdn.platform.openai.com/deployments/chatkit/chatkit.js";
     script.async = true;
     script.onload = setupChatKit;
-
     document.body.appendChild(script);
   }, []);
+
+  const isMobile =
+    typeof window !== "undefined" ? window.innerWidth <= 768 : false;
 
   return (
     <div
@@ -112,7 +110,7 @@ export default function App() {
           linear-gradient(180deg, #040404 0%, #050606 36%, #07110d 68%, #050505 100%)
         `,
         fontFamily: "'IBM Plex Sans Arabic', 'Tahoma', 'Arial', sans-serif",
-        padding: "28px 24px",
+        padding: isMobile ? "20px 14px" : "28px 24px",
         boxSizing: "border-box",
         direction: "rtl",
       }}
@@ -126,6 +124,7 @@ export default function App() {
         <div
           style={{
             marginBottom: "24px",
+            textAlign: "right",
           }}
         >
           <div
@@ -143,7 +142,7 @@ export default function App() {
 
           <div
             style={{
-              fontSize: "44px",
+              fontSize: isMobile ? "34px" : "44px",
               lineHeight: 1.1,
               fontWeight: 300,
               marginBottom: "14px",
@@ -151,23 +150,28 @@ export default function App() {
               textShadow: "0 0 18px rgba(233, 220, 192, 0.10)",
             }}
           >
-            أرتقـــاء
+            أرتقاء
           </div>
 
           <div
             style={{
-              fontSize: "17px",
+              fontSize: isMobile ? "15px" : "17px",
               lineHeight: 1.95,
               color: "#d8ccb4",
               maxWidth: "860px",
+              marginLeft: "auto",
             }}
           >
-            مساعد ارتقاء الذكي لخدمة المبيعات ، يساعدك في تسعير المنتجات 
+            مساعد ارتقاء الذكي لخدمة المبيعات، يساعدك في تسعير المنتجات والاستفسارات
+            والتخصيص، بروح تعكس هوية ارتقاء حيث تتحول الفكرة إلى أثر ملموس.
           </div>
         </div>
 
         <div
           style={{
+            maxWidth: "1120px",
+            width: "100%",
+            margin: "0 auto",
             borderRadius: "30px",
             padding: "1px",
             background:
@@ -183,7 +187,7 @@ export default function App() {
               background:
                 "linear-gradient(180deg, rgba(8,8,8,0.96) 0%, rgba(10,12,11,0.96) 100%)",
               height: "calc(100vh - 180px)",
-              minHeight: "760px",
+              minHeight: isMobile ? "640px" : "760px",
             }}
           >
             <div
@@ -195,13 +199,13 @@ export default function App() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                padding: "0 22px",
+                padding: isMobile ? "0 14px" : "0 22px",
                 boxSizing: "border-box",
               }}
             >
               <div
                 style={{
-                  fontSize: "14px",
+                  fontSize: isMobile ? "12px" : "14px",
                   color: "#ddcfb2",
                   fontWeight: 600,
                 }}
