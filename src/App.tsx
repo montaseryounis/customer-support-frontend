@@ -18,10 +18,6 @@ export default function App() {
     if (initializedRef.current) return;
     initializedRef.current = true;
 
-    const existingScript = document.querySelector(
-      'script[src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"]'
-    );
-
     const setupChatKit = async () => {
       await customElements.whenDefined("openai-chatkit");
 
@@ -30,7 +26,6 @@ export default function App() {
 
       chatkitEl.setOptions({
         api: {
-          domainKey: "domain_pk_69da17b306088194b38f01a92dc3288f0a6bf281dcae82e7",
           async getClientSecret(currentClientSecret: string | null) {
             if (currentClientSecret) {
               return currentClientSecret;
@@ -57,6 +52,10 @@ export default function App() {
         },
       });
     };
+
+    const existingScript = document.querySelector(
+      'script[src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"]'
+    );
 
     if (existingScript) {
       setupChatKit();
